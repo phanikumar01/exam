@@ -8,7 +8,7 @@
 //test for EqualonEqauls of videoclips
 // test for EqualsonNonEquals of videoclips
 //end to negative value
-//end to positive value
+//start to positive value
 package embeddedmediaplayer;
 
 import org.junit.After;
@@ -69,7 +69,7 @@ public class ClipTest {
        String OriginalTitle = "Sub video"; //Create sub video clip
        instance.setTitle(OriginalTitle);   // Set Ttile  
        int OriginalStartTime = 10; // sub video start time
-       int originalEndtime = 10;// sub video end time
+       int originalEndtime = 40;// sub video end time
        instance.setMax(100);//set master video to 100 seconds video
        
        instance.setStart(OriginalStartTime);//Set start time to sub video from 10th sec 
@@ -129,12 +129,14 @@ public class ClipTest {
     clip.setTitle("Initial Title");
     int ClipOneStartTime = 5;
     int CliopOneEndTime = 30;
+    int expectedtime = 30;
+    
     clip.setStart(ClipOneStartTime);
     clip.setEnd(CliopOneEndTime);
-    int PositiveNumber = 7;
-    clip.setStart(PositiveNumber);
-    int ModifiedStartTime = clip.getStart();
-    if (ModifiedStartTime > 0){
+    int NegativeNumber = -7;
+    clip.setEnd(NegativeNumber);
+    int ModifiedEndTime = clip.getStart();
+    if (ModifiedEndTime > 0){
         NegativeFlag = true;
        
     }
