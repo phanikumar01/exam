@@ -5,6 +5,8 @@
  */
 //test title to empty string
 //test for end value as start value
+//test for EqualonEqauls of videoclips
+
 package embeddedmediaplayer;
 
 import org.junit.After;
@@ -60,9 +62,9 @@ public class ClipTest {
     @Test
     public void testSetEndBeforeStartKeepsPreviousValue()
     {
-       System.out.println("Doesn't allow to set end time to start time");
+       System.out.println("Donot allow to set end time as start time");
        Clip instance = new Clip();
-       String OrigTitle = "Sub video"; //Create video clip
+       String OrigTitle = "video clip"; //Create video clip
        instance.setTitle(OrigTitle);   // sets Title  
        int originalStartTime = 5; // Created video clip start time
        int originalEndtime = 40;//  Created video clip end time
@@ -77,9 +79,29 @@ public class ClipTest {
        System.out.println("Start time is same as previous value");
     }
     
-    
-    
+        @Test
+    public void testEqualsOnEqualClips() 
+    {
+       System.out.println("create multiple videos");
+       String Video1 = "video 1"; //Create first sub video clip
+       Clip subClip1 = new Clip(Video1,0,10); // First video clip
+       
+       Clip subClip2 = new Clip();// Second video clip
+       String Video2 = "video 1"; //Create second sub video clip 
+       subClip2.setTitle(Video2);   // Set Title 
+       subClip2.setStart(0);//start time of video from 0th sec 
+       subClip2.setEnd(10);// end time to sub video at 10th second
+       
+       boolean DupliClip = subClip1.equals(subClip2); 
+       assertEquals(true,DupliClip); // duplicate video
+       System.out.println("video clips are resemblence");  
+           
     }
+    
+        
+    }
+    
+    
     
  
     
