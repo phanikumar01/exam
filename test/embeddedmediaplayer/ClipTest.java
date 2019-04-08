@@ -8,7 +8,7 @@
 //test for EqualonEqauls of videoclips
 // test for EqualsonNonEquals of videoclips
 //end to negative value
-
+//end to positive value
 package embeddedmediaplayer;
 
 import org.junit.After;
@@ -118,6 +118,7 @@ public class ClipTest {
        System.out.println("video clips are resemblence");  
            
     }
+    
     @Test
     public void SetEndToNegativeNumberKeepsPreviousValue()
     {
@@ -139,11 +140,32 @@ public class ClipTest {
     }
     assertEquals(true,NegativeFlag);
     System.out.println("start time is not negative");
-    
-   
-           
-           
+          
     }
+    @Test
+    public void SetStartToValidPositiveNumber() 
+    {
+    System.out.println("set valid positive number ");
+    boolean PositiveFlag = false ;
+    Clip clip = new Clip();
+    String IntialTitle = "ClipOne";
+    clip.setTitle("Initial Title");
+    int ClipOneStartTime = 5;
+    int CliopOneEndTime = 30;
+    clip.setStart(ClipOneStartTime);
+    clip.setEnd(CliopOneEndTime);
+    int PositiveNumber = 7;
+    clip.setStart(PositiveNumber);
+    int ModifiedStartTime = clip.getStart();
+    if (ModifiedStartTime > 0){
+        PositiveFlag = true;
+       
+    }
+    assertEquals(true,PositiveFlag);
+    System.out.println("start time is not negative");
+          
+    }
+    
     
     
     
