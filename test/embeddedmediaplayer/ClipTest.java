@@ -7,6 +7,7 @@
 //test for end value as start value
 //test for EqualonEqauls of videoclips
 // test for EqualsonNonEquals of videoclips
+//end to negative value
 
 package embeddedmediaplayer;
 
@@ -60,27 +61,27 @@ public class ClipTest {
         System.out.println("Empty Title is not set");
     }
     
-    @Test
+     @Test
     public void testSetEndBeforeStartKeepsPreviousValue()
     {
-       System.out.println("Donot allow to set end time as start time");
+       System.out.println("Doesn't allow to set end time to start time");
        Clip instance = new Clip();
-       String OrigTitle = "video clip"; //Create video clip
-       instance.setTitle(OrigTitle);   // sets Title  
-       int originalStartTime = 5; // Created video clip start time
-       int originalEndtime = 40;//  Created video clip end time
-       instance.setMax(80);//set main video to 80 seconds video
-              // Create a video clip from 5th second to 40th second
-       instance.setStart(originalStartTime);//Set start time to videoclip from 5th sec 
-       instance.setEnd(originalEndtime);// set end time to videoclip at 40th second
+       String OriginalTitle = "Sub video"; //Create sub video clip
+       instance.setTitle(OriginalTitle);   // Set Ttile  
+       int OriginalStartTime = 10; // sub video start time
+       int originalEndtime = 10;// sub video end time
+       instance.setMax(100);//set master video to 100 seconds video
+       
+       instance.setStart(OriginalStartTime);//Set start time to sub video from 10th sec 
+       instance.setEnd(originalEndtime);// set end time to sub video at 50th second
        int EndTime = instance.getEnd(); //Get endtime of the video
-       instance.setStart(EndTime); //try to set end time as start time to the video clip
-       int CurrentStartTime = instance.getStart();//check start time was set to endtime
-       assertEquals(originalStartTime,CurrentStartTime);
+       instance.setStart(EndTime); //try setting end time as start time to the sub clip
+       int CurrentStartTime = instance.getStart();//chek start time was set to endtime, usually it wont allow
+       assertEquals(OriginalStartTime,CurrentStartTime);
        System.out.println("Start time is same as previous value");
     }
     
-        @Test
+    @Test
     public void testEqualsOnEqualClips() 
     {
        System.out.println("create multiple videos");
@@ -99,7 +100,7 @@ public class ClipTest {
            
     }
     
-       @Test
+    @Test
     public void testEqualsOnNonEqualClips() 
     {
        System.out.println("create multiple videos");
@@ -117,6 +118,37 @@ public class ClipTest {
        System.out.println("video clips are resemblence");  
            
     }
+    @Test
+    public void SetEndToNegativeNumberKeepsPreviousValue()
+    {
+    System.out.println("set valid positive number ");
+    boolean NegativeFlag = false ;
+    Clip clip = new Clip();
+    String IntialTitle = "ClipOne";
+    clip.setTitle("Initial Title");
+    int ClipOneStartTime = 5;
+    int CliopOneEndTime = 30;
+    clip.setStart(ClipOneStartTime);
+    clip.setEnd(CliopOneEndTime);
+    int PositiveNumber = 7;
+    clip.setStart(PositiveNumber);
+    int ModifiedStartTime = clip.getStart();
+    if (ModifiedStartTime > 0){
+        NegativeFlag = true;
+       
+    }
+    assertEquals(true,NegativeFlag);
+    System.out.println("start time is not negative");
+    
+   
+           
+           
+    }
+    
+    
+    
+     }
+    
     
   
     
@@ -130,4 +162,4 @@ public class ClipTest {
     
     
     
-}
+
